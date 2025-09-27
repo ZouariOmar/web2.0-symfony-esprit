@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+
+
+{% endblock %}
+
+
+{% block body %}
+{# Vars #}
+{% set s = "Hello World" %}
+{{ name | upper }}
+{{ prename }}
+
+<div>
+
+  {% for i in 1..9 %}
+  {{ i }}
+  {% endfor %}
+
+  {% if name == "omar" %}
+  <p>Hello Mr.TEST</p>
+  {% endif %}
+
+  <br>
+
+  <img src="/assets/imgs/fire.png">
+  <p>{{ s }}</p>
+
+  <a href="{{ url('app_main') }}">link 1</a>
+  <a href="{{ path('app_main') }}">link 2</a>
+</div>
+{% endblock %}
