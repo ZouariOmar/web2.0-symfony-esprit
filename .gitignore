@@ -15,7 +15,6 @@
 ###< phpunit/phpunit ###
 
 ###> symfony/asset-mapper ###
-/public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
 
@@ -23,4 +22,5 @@
 .env*
 .php-cs-fixer.cache
 .phpactor.json
+.gitignore
 ###< Custom ###

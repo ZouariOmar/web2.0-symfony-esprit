@@ -10,7 +10,7 @@
 <!-- PROJECT HEADER -->
 <h1 align="center">
   <br>
-  <a href="https://github.com/ZouariOmar/Code-Practice"><img src="public/assets/imgs/symfony.png" alt="symfony" width="600"></a>
+  <a href="https://github.com/ZouariOmar/web2.0-symfony-esprit/public/assets/imgs/symfony.png"><img src="public/assets/imgs/symfony.png" alt="symfony" width="200"></a>
   <br>
   web2.0-symfony-esprit
   <br>
