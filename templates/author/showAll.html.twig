@@ -52,6 +52,7 @@
       <th scope="col">ID</th>
       <th scope="col">Username</th>
       <th scope="col">Email</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -60,6 +61,10 @@
       <th scope="row">{{ author.id }}</th>
       <td>{{ author.username }}</td>
       <td>{{ author.email }}</td>
+      <td>
+        <a href=" {{ path('app_author_delete', { 'id': author.id }) }} ">delete</a>
+        <a href="{{ path('app_author_edit', { 'id': author.id }) }}">edit</a>
+      </td>
     </tr>
     {% endfor %}
   </tbody>
