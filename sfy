@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+# =========================================
+# .FILE
+#   sfy
+#
+# .SYNOPSIS
+#   Symfony CLI helper (with less typing)
+#
+# .DESCRIPTION
+#   Wrapper script for frequently used Symfony CLI commands
+#   to reduce keystrokes and simplify development.
+#
+# .PARAMETER command
+#   The Symfony command to run (e.g., console, serve, etc.)
+#
+# .INPUTS
+#   None
+#
+# .OUTPUTS
+#   Depends on the Symfony command used
+#
+# .NOTES
+#   Version       : 1.0
+#   Author        : @ZouariOmar <zouariomar20@gmail.com>
+#   Created       : 2025-10-11
+#   Change Log    : Initial version
+#
+# .EXAMPLE
+#   ./sfy cc   # Runs 'symfony console cache:clear'
+# =========================================
+
+# Load custom colors
+[[ -s ${HOME}/.bash/.bash_colors ]] && source "${HOME}/.bash/.bash_colors"
+
+# Configuration
+EXIT_SUCCESS=0
+EXIT_FAILED=1
+SYMFONY_BIN="symfony"
+CONSOLE_BIN="${SYMFONY_BIN} bin/console"
+
+# Aliases for common commands
+declare -A COMMANDS
+COMMANDS["cc"]="${CONSOLE_BIN} cache:clear"
+COMMANDS["ss"]="${SYMFONY_BIN} server:start"
+COMMANDS["sst"]="${SYMFONY_BIN} server:stop"
+COMMANDS["mm"]="${CONSOLE_BIN} make:migration"
+COMMANDS["dm"]="${CONSOLE_BIN} doctrine:migrations:migrate"
+
+# Function to execute a shortcut
+function run_command() {
+  if [[ $1 == "--help" ]] || [[ $1 == "-h" ]]; then
+    help
+  fi
+
+  local key="$1"
+  shift
+
+  if [[ -n "${COMMANDS[${key}]}" ]]; then
+    ${COMMANDS[$key]} "$@"
+    exit ${EXIT_SUCCESS}
+  fi
+
+  echo -e "${RED}[ERROR] Unknown shortcut ${key}${RESET}"
+  echo -e "${BLUE}[INFO]Try './sfy --help' for more information.${RESET}"
+  exit ${EXIT_FAILED}
+
+}
+
+help() {
+  echo -e "${YELLOW}[FILE]${RESET}
+  sfy
+${YELLOW}[LINK]${RESET}
+  https://github.com/ZouariOmar
+${YELLOW}[BRIEF]${RESET}
+  Symfony CLI helper (with less typing)
+${YELLOW}[USAGE]${RESET}
+  ./sfy cc        -- Runs 'symfony console cache:clear'
+${YELLOW}[OPTIONS]${RESET}
+  cc  -- ${CONSOLE_BIN} cache:clear
+  ss  -- ${SYMFONY_BIN} server:start
+  sst -- ${SYMFONY_BIN} server:stop
+  mm  -- ${CONSOLE_BIN} make:migration
+  dm  -- ${CONSOLE_BIN} doctrine:migrations:migrate
+${YELLOW}[VERSION]${RESET}
+  1.0
+${YELLOW}[AUTHOR]${RESET}
+  @ZouariOmar <zouariomar20@gmail.com>
+${YELLOW}[CREATED]${RESET}
+  11/10/2025
+${YELLOW}[CHANGELOG]${RESET}
+  1.0"
+  exit ${EXIT_SUCCESS}
+}
+
+# Main
+if [[ $# -lt 1 ]]; then
+  echo -e "${RED}[ERROR] sfy: you must specify the option with there args.${RESET}"
+  echo -e "${BLUE}[INFO] Try './sfy --help' for more information.${RESET}"
+  exit 1
+fi
+
+run_command "$@"
