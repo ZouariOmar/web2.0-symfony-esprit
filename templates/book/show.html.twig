@@ -1,0 +1,75 @@
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+      border: 2px solid rgb(140 140 140);
+      font-family: sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    caption {
+      caption-side: bottom;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    thead,
+    tfoot {
+      background-color: rgb(228 240 245);
+    }
+
+    th,
+    td {
+      border: 1px solid rgb(160 160 160);
+      padding: 8px 10px;
+    }
+
+    td:last-of-type {
+      text-align: center;
+    }
+
+    tbody>tr:nth-of-type(even) {
+      background-color: rgb(237 238 242);
+    }
+
+    tfoot th {
+      text-align: right;
+    }
+
+    tfoot td {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<table>
+  <caption>
+    Books 2025
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Book ID</th>
+      <th scope="col">Author ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">publicationDate</th>
+      <th scope="col">enbled</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <th scope="row">{{ book.id }}</th>
+      <th scope="row">{{ book.getAuthor().id|default('N/A') }}</th>
+      <td>{{ book.title }}</td>
+      <td>{{ book.publicationDate|date("Y/M/d") }}</td>
+      <td>{{ book.enabled }}</td>
+      <td>
+        <a href=" {{ path('app_book_delete', { 'id': book.id }) }} ">delete</a>
+        <a href="{{ path('app_book_edit', { 'id': book.id }) }}">edit</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

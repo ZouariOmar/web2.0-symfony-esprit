@@ -36,7 +36,7 @@
 EXIT_SUCCESS=0
 EXIT_FAILED=1
 SYMFONY_BIN="symfony"
-CONSOLE_BIN="${SYMFONY_BIN} bin/console"
+CONSOLE_BIN="php bin/console"
 
 # Aliases for common commands
 declare -A COMMANDS
@@ -44,7 +44,10 @@ COMMANDS["cc"]="${CONSOLE_BIN} cache:clear"
 COMMANDS["ss"]="${SYMFONY_BIN} server:start"
 COMMANDS["sst"]="${SYMFONY_BIN} server:stop"
 COMMANDS["mm"]="${CONSOLE_BIN} make:migration"
-COMMANDS["dm"]="${CONSOLE_BIN} doctrine:migrations:migrate"
+COMMANDS["dmm"]="${CONSOLE_BIN} doctrine:migrations:migrate"
+COMMANDS["me"]="${CONSOLE_BIN} make:entity"
+COMMANDS["mc"]="${CONSOLE_BIN} make:controller"
+COMMANDS["mf"]="${CONSOLE_BIN} make:form"
 
 # Function to execute a shortcut
 function run_command() {
@@ -80,7 +83,7 @@ ${YELLOW}[OPTIONS]${RESET}
   ss  -- ${SYMFONY_BIN} server:start
   sst -- ${SYMFONY_BIN} server:stop
   mm  -- ${CONSOLE_BIN} make:migration
-  dm  -- ${CONSOLE_BIN} doctrine:migrations:migrate
+  dmm -- ${CONSOLE_BIN} doctrine:migrations:migrate
 ${YELLOW}[VERSION]${RESET}
   1.0
 ${YELLOW}[AUTHOR]${RESET}
