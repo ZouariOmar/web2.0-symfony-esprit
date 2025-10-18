@@ -1,5 +1,19 @@
 <?php
 
+/**
+ * `Book` controller
+ *
+ * PHP version 8.4.13
+ *
+ * @changed    10/18/2025
+ * @category   controller
+ * @package    web2.0-symfony-esprit
+ * @subpackage Controller
+ * @author     @ZouariOmar <zouariomar20@gmail.com>
+ * @license    GPL3.0 License
+ * @link       http://127.0.0.1:8000/book
+ */
+
 namespace App\Controller;
 
 use App\Entity\Book;
@@ -10,6 +24,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/**
+ * BookController class --> AbstractController
+ *
+ * <p>
+ * [ROUTES]
+ * .
+ * └── /book
+ *    ├── /show/all
+ *    ├── /new
+ *    ├── /delete/{id}
+ *    └── /edit/{id}
+ * </p>
+ */
 final class BookController extends AbstractController
 {
     #[Route('/book', name: 'app_book')]

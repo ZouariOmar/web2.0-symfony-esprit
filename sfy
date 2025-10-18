@@ -48,6 +48,8 @@ COMMANDS["dmm"]="${CONSOLE_BIN} doctrine:migrations:migrate"
 COMMANDS["me"]="${CONSOLE_BIN} make:entity"
 COMMANDS["mc"]="${CONSOLE_BIN} make:controller"
 COMMANDS["mf"]="${CONSOLE_BIN} make:form"
+COMMANDS["ma"]="${CONSOLE_BIN} make:auth"
+COMMANDS["mac"]="${CONSOLE_BIN} make:admin:crud"
 
 # Function to execute a shortcut
 function run_command() {
@@ -84,6 +86,12 @@ ${YELLOW}[OPTIONS]${RESET}
   sst -- ${SYMFONY_BIN} server:stop
   mm  -- ${CONSOLE_BIN} make:migration
   dmm -- ${CONSOLE_BIN} doctrine:migrations:migrate
+  me  -- ${CONSOLE_BIN} make:entity
+  mc  -- ${CONSOLE_BIN} make:controller
+  mf  -- ${CONSOLE_BIN} make:form
+  ma  -- ${CONSOLE_BIN} make:auth
+  mac -- ${CONSOLE_BIN} make:admin:crud
+
 ${YELLOW}[VERSION]${RESET}
   1.0
 ${YELLOW}[AUTHOR]${RESET}

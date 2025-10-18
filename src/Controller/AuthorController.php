@@ -1,5 +1,19 @@
 <?php
 
+/**
+ * `Author` controller
+ *
+ * PHP version 8.4.13
+ *
+ * @changed    10/18/2025
+ * @category   Category
+ * @package    web2.0-symfony-esprit
+ * @subpackage Controller
+ * @author     @ZouariOmar <zouariomar20@gmail.com>
+ * @license    GPL3.0 License
+ * @link       http://127.0.0.1:8000/author
+ */
+
 namespace App\Controller;
 
 use App\Entity\Author;
@@ -10,6 +24,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * AuthorController class --> AbstractController
+ *
+ * <p>
+ * [ROUTES]
+ * .
+ * └── /author
+ *    ├── /show/{name}_{prename}
+ *    ├── /show/all
+ *    ├── /new
+ *    ├── /delete/{id}
+ *    └── /edit/{id}
+ * </p>
+ */
 final class AuthorController extends AbstractController
 {
     #[Route('/author', name: 'app_author')]
