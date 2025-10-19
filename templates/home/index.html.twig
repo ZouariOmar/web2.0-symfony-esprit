@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  {% block stylesheets %}
+  <link href="{{ asset('css/home/main.css') }}" type="text/css" rel="stylesheet" />
+  {% endblock %}
+</head>
+
+<body>
+  {{ include('components/navbar.html.twig', {'active': 'home'}) }}
+  <h1>Welcom to Home page :)</h1>
+</body>
+
+</html>

@@ -51,24 +51,30 @@ COMMANDS["mf"]="${CONSOLE_BIN} make:form"
 COMMANDS["ma"]="${CONSOLE_BIN} make:auth"
 COMMANDS["mac"]="${CONSOLE_BIN} make:admin:crud"
 
-# Function to execute a shortcut
-function run_command() {
+# Main func to execute shortcuts
+function run_cmd() {
   if [[ $1 == "--help" ]] || [[ $1 == "-h" ]]; then
-    help
+    help // + EXIT_SUCCESS
   fi
 
   local key="$1"
   shift
 
   if [[ -n "${COMMANDS[${key}]}" ]]; then
-    ${COMMANDS[$key]} "$@"
+    ${COMMANDS[${key}]} "$@"
     exit ${EXIT_SUCCESS}
   fi
 
-  echo -e "${RED}[ERROR] Unknown shortcut ${key}${RESET}"
-  echo -e "${BLUE}[INFO]Try './sfy --help' for more information.${RESET}"
+  usage "${RED}[ERROR] Unknown shortcut ${key}${RESET}"
   exit ${EXIT_FAILED}
 
+}
+
+usage() {
+  if [ ! -z "$1" ]; then
+    echo -e "$1"
+  fi
+  echo -e "${BLUE}[INFO]Try './sfy --help' for more information.${RESET}"
 }
 
 help() {
@@ -103,11 +109,9 @@ ${YELLOW}[CHANGELOG]${RESET}
   exit ${EXIT_SUCCESS}
 }
 
-# Main
 if [[ $# -lt 1 ]]; then
-  echo -e "${RED}[ERROR] sfy: you must specify the option with there args.${RESET}"
-  echo -e "${BLUE}[INFO] Try './sfy --help' for more information.${RESET}"
+  usage "${RED}[ERROR] sfy: you must specify the option with there args.${RESET}"
   exit 1
 fi
 
-run_command "$@"
+run_cmd "$@"

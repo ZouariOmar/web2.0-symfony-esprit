@@ -54,7 +54,7 @@ final class AuthorController extends AbstractController
         return $this->render("author/show.html.twig", ['name' => $name, 'prename' => $prename]);
     }
 
-    #[Route("author/show/all", name: 'app_show_authors')]
+    #[Route("author/show/all", name: 'app_author_show_all')]
     public function showAllAuthors(EntityManagerInterface $entityManager): Response
     {
         return $this->render("author/showAll.html.twig", [

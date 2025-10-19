@@ -1,0 +1,25 @@
+<nav class="navbar">
+  <a href="{{ path('app_home') }}" class="{% if active == 'home' %}active{% endif %}">
+    <i class="fa fa-fw fa-home"></i> Home</a>
+
+  <!-- Authors part -->
+  <div class="subnav {% if active == 'author' %}active{% endif %}">
+    <button class="subnavbtn">Authors <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="{{ path('app_author_show_all') }}"><i class="fa fa-fw fa-user"></i> Show All Authors</a>
+      <a href="{{ path('app_author_new') }}"><i class="fa fa-fw fa-plus"></i> Add New Author</a>
+    </div>
+  </div>
+
+  <!-- Books part -->
+  <div class="subnav {% if active == 'book' %}active{% endif %}">
+    <button class="subnavbtn">Books <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="{{ path('app_book_show') }}"><i class="fa fa-fw fa-book"></i> Show All Books</a>
+      <a href="{{ path('app_book_new') }}"><i class="fa fa-fw fa-plus"></i> Add New Book</a>
+    </div>
+  </div>
+
+  <a href="https://github.com/ZouariOmar" class="{% if active == 'contact' %}active{% endif %}" target="_blank"><i
+      class="fa fa-fw fa-envelope"></i> Contact</a>
+</nav>
