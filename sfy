@@ -23,7 +23,7 @@
 #   Version       : 1.0
 #   Author        : @ZouariOmar <zouariomar20@gmail.com>
 #   Created       : 2025-10-11
-#   Change Log    : Initial version
+#   Change Log    : 5101517
 #
 # .EXAMPLE
 #   ./sfy cc   # Runs 'symfony console cache:clear'
@@ -32,7 +32,7 @@
 # Load custom colors
 [[ -s ${HOME}/.bash/.bash_colors ]] && source "${HOME}/.bash/.bash_colors"
 
-# Configuration
+# Configuration part
 EXIT_SUCCESS=0
 EXIT_FAILED=1
 SYMFONY_BIN="symfony"
@@ -41,20 +41,22 @@ CONSOLE_BIN="php bin/console"
 # Aliases for common commands
 declare -A COMMANDS
 COMMANDS["cc"]="${CONSOLE_BIN} cache:clear"
+COMMANDS["dmm"]="${CONSOLE_BIN} doctrine:migrations:migrate"
+COMMANDS["ma"]="${CONSOLE_BIN} make:auth"
+COMMANDS["mc"]="${CONSOLE_BIN} make:controller"
+COMMANDS["mcr"]="${CONSOLE_BIN} make:crud"
+COMMANDS["me"]="${CONSOLE_BIN} make:entity"
+COMMANDS["mf"]="${CONSOLE_BIN} make:form"
+COMMANDS["mm"]="${CONSOLE_BIN} make:migration"
 COMMANDS["ss"]="${SYMFONY_BIN} server:start"
 COMMANDS["sst"]="${SYMFONY_BIN} server:stop"
-COMMANDS["mm"]="${CONSOLE_BIN} make:migration"
-COMMANDS["dmm"]="${CONSOLE_BIN} doctrine:migrations:migrate"
-COMMANDS["me"]="${CONSOLE_BIN} make:entity"
-COMMANDS["mc"]="${CONSOLE_BIN} make:controller"
-COMMANDS["mf"]="${CONSOLE_BIN} make:form"
-COMMANDS["ma"]="${CONSOLE_BIN} make:auth"
-COMMANDS["mac"]="${CONSOLE_BIN} make:admin:crud"
+COMMANDS["cda"]="${SYMFONY_BIN} console debug:autowiring"
+COMMANDS["mco"]="${SYMFONY_BIN} messenger:consume"
 
 # Main func to execute shortcuts
 function run_cmd() {
   if [[ $1 == "--help" ]] || [[ $1 == "-h" ]]; then
-    help // + EXIT_SUCCESS
+    help
   fi
 
   local key="$1"
@@ -88,15 +90,16 @@ ${YELLOW}[USAGE]${RESET}
   ./sfy cc        -- Runs 'symfony console cache:clear'
 ${YELLOW}[OPTIONS]${RESET}
   cc  -- ${CONSOLE_BIN} cache:clear
+  dmm -- ${CONSOLE_BIN} doctrine:migrations:migrate
+  ma  -- ${CONSOLE_BIN} make:auth
+  mc  -- ${CONSOLE_BIN} make:controller
+  mcr -- ${CONSOLE_BIN} make:crud
+  me  -- ${CONSOLE_BIN} make:entity
+  mf  -- ${CONSOLE_BIN} make:form
+  mm  -- ${CONSOLE_BIN} make:migration
   ss  -- ${SYMFONY_BIN} server:start
   sst -- ${SYMFONY_BIN} server:stop
-  mm  -- ${CONSOLE_BIN} make:migration
-  dmm -- ${CONSOLE_BIN} doctrine:migrations:migrate
-  me  -- ${CONSOLE_BIN} make:entity
-  mc  -- ${CONSOLE_BIN} make:controller
-  mf  -- ${CONSOLE_BIN} make:form
-  ma  -- ${CONSOLE_BIN} make:auth
-  mac -- ${CONSOLE_BIN} make:admin:crud
+  da  -- ${SYMFONY_BIN} debug:autowiring
 
 ${YELLOW}[VERSION]${RESET}
   1.0
@@ -105,7 +108,7 @@ ${YELLOW}[AUTHOR]${RESET}
 ${YELLOW}[CREATED]${RESET}
   11/10/2025
 ${YELLOW}[CHANGELOG]${RESET}
-  1.0"
+  5101517"
   exit ${EXIT_SUCCESS}
 }
 

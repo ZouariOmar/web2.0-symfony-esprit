@@ -18,6 +18,7 @@ namespace App\Controller;
 
 use App\Entity\Author;
 use App\Form\AuthorType;
+use App\Service\HappyQuote;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,8 +59,8 @@ final class AuthorController extends AbstractController
     public function showAllAuthors(EntityManagerInterface $entityManager): Response
     {
         return $this->render("author/showAll.html.twig", [
-          'authors' => $entityManager->getRepository(Author::class)->findAll()
-        ]);
+        'authors' => $entityManager->getRepository(Author::class)->findAll(),
+        'random_quote' => HappyQuote::getHappyMessage()]);
     }
 
     #[Route('author/new', name: 'app_author_new')]

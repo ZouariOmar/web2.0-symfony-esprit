@@ -18,6 +18,7 @@ namespace App\Controller;
 
 use App\Entity\Book;
 use App\Form\BookType;
+use App\Service\AuthorMailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,12 +57,13 @@ final class BookController extends AbstractController
     }
 
     #[Route('book/new', name: 'app_book_new')]
-    public function new(Request $request, EntityManagerInterface $em): Response
+    public function new(Request $request, EntityManagerInterface $em, AuthorMailerService $mailer): Response
     {
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $mailer->sendNow("zouariomar20@gmail.com"); // ### NOTIFY ME :)
             $book = $form->getData();
             $em->persist($book);
             $em->flush();
